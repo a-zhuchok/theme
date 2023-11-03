@@ -5,9 +5,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+* {
+  background-color: #ecece8;
+  list-style-type: decimal;
+}
+button {
+  background-color: white;
+  justify-content: center;
+}
+input {
+  background-color: white;
 }
