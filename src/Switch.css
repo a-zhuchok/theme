@@ -1,0 +1,51 @@
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #d1cfcf;
+    border-radius: 30px;
+}
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    top: 4px;
+    left: 4px;
+    background-color: blanchedalmond;
+    transition: 0.4s;
+    border-radius: 90px;
+    z-index:5;
+}
+input:checked+ .slider {
+    background-color: rgb(247, 165, 13);
+}
+input:checked + .slider::before {
+    transform: translateX(26px);
+}
+.sun{
+    position: absolute;
+    align-items: center;
+    margin-top:6px;
+    margin-left: 5px;
+}
+.moon{
+    position: absolute;
+    align-items: center;
+    margin-top:6px;
+    margin-left: 34px;
+}
