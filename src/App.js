@@ -3,6 +3,7 @@ import './App.css';
 import React, {useState,  useRef } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Switch from './Switch';
+import ThemeContext from "./ThemeContext";
 
 const AppWrapper = styled.div`
 width: 100%;
@@ -57,8 +58,10 @@ function App() {
         setText("")
     }}
     
-  return (
+  return (<ThemeContext.Provider value={theme}>
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <ThemeContext.Consumer>
+        {(theme)=>(
       <AppWrapper>
         <Insert><input ref={textInput} value={text} onChange ={handleChange} onKeyDown={handleKeyDown}/></Insert>
         <button onClick={() => valid()}>
@@ -66,8 +69,10 @@ function App() {
         </button>
         <Text><List color={(props)=>props.theme.buttom} arr={ar} /> </Text> 
         <Switch toggleTheme={toggleTheme} ></Switch>
-      </AppWrapper>  
+      </AppWrapper> )}
+      </ThemeContext.Consumer> 
     </ThemeProvider>
+    </ThemeContext.Provider>
   );
 }
 
