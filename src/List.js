@@ -10,7 +10,7 @@ align-items: center;
 `
 const ButtonAdd = styled.div`
 padding:5px;
-background-color: ${(props)=>props.theme.buttom};
+background-color: ${({theme})=>theme.buttom};
 cursor: pointer;
 `
 const List = ({arr}) => {

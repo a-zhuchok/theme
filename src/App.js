@@ -1,7 +1,7 @@
 import List from "./List";
 import './App.css';
 import React, {useState,  useRef } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider }  from 'styled-components';
 import Switch from './Switch';
 import ThemeContext from "./ThemeContext";
 
@@ -12,31 +12,20 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 align-items: center;
-background-color: ${(props)=>props.theme.body}
+background-color: ${({theme})=>theme.body};
 `
 const Insert = styled.div`
 margin:1rem;`
 
 const ButtonFocus = styled.div`
-background-color: ${(props)=>props.theme.buttom};
+background-color: ${({theme})=>theme.buttom};
 cursor: pointer;
 padding: 5px;
 `
 const Text = styled.div`
-color: ${(props)=>props.theme.text};
+color: ${({theme})=>theme.text};
 margin:1rem;
 `
-const darkTheme = {
-  body:"#1c1c1c",
-  buttom:"rgb(247, 165, 13)",
-  text:"#b6b6b6",
-  }
-const lightTheme = {
-  body:"#fff",
-  buttom:"#fff",
-  text:"#black",
-  }
-
 function App() {
   const [theme, setTheme]=useState('light');
   const isDarkTheme = theme ==="dark";
@@ -58,21 +47,20 @@ function App() {
         setText("")
     }}
     
-  return (<ThemeContext.Provider value={theme}>
-    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
-      <ThemeContext.Consumer>
+  return (
+    <ThemeContext.Consumer>
         {(theme)=>(
+    <ThemeProvider theme={isDarkTheme ? theme.darkTheme : theme.lightTheme}>
       <AppWrapper>
         <Insert><input ref={textInput} value={text} onChange ={handleChange} onKeyDown={handleKeyDown}/></Insert>
         <button onClick={() => valid()}>
         <ButtonFocus>Click to focus </ButtonFocus>
         </button>
-        <Text><List color={(props)=>props.theme.buttom} arr={ar} /> </Text> 
+        <Text><List  arr={ar} /> </Text> 
         <Switch toggleTheme={toggleTheme} ></Switch>
-      </AppWrapper> )}
-      </ThemeContext.Consumer> 
-    </ThemeProvider>
-    </ThemeContext.Provider>
+      </AppWrapper> 
+    </ThemeProvider>)}
+    </ThemeContext.Consumer>
   );
 }
 
